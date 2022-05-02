@@ -44,6 +44,15 @@ public class UsuarioDaoTest {
 
     }
 
+    @Test
+    void deveRemoverUmUsuario() {
+        Usuario novoUsuario = criarUsuario();
+        usuarioDao.deletar(novoUsuario);
+        assertThrows(
+            NoResultException.class, () -> usuarioDao.buscarPorUsername(novoUsuario.getNome())
+        );
+    }
+
     private Usuario criarUsuario() {
         Usuario novoUsuario = new Usuario("fulano", "fulano@example.com", "12345678");
         em.persist(novoUsuario);
