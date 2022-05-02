@@ -26,7 +26,7 @@ public class Usuario {
 
     @NotNull
     @NotBlank
-    @Column(name = "password")
+    @Column(name = "senha")
     private String senha;
 
     @NotNull
@@ -46,11 +46,11 @@ public class Usuario {
     }
 
     public Usuario(@NotNull @NotBlank String nome, @NotNull @NotBlank @Email String email,
-                   @NotNull @NotBlank String password) {
+                   @NotNull @NotBlank String senha) {
         super();
         this.nome = nome;
         this.email = email;
-        this.senha = password;
+        this.senha = senha;
     }
 
     public Long getId() {

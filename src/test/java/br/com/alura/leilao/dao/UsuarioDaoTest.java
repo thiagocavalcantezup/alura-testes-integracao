@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.model.Usuario;
 import br.com.alura.leilao.util.JPAUtil;
+import br.com.alura.leilao.util.builder.UsuarioBuilder;
 
 public class UsuarioDaoTest {
 
@@ -32,32 +33,37 @@ public class UsuarioDaoTest {
 
     @Test
     void deveEncontrarUsuarioCadastradoPeloNome() {
-        Usuario novoUsuario = criarUsuario();
+        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
+                                                  .comEmail("fulano@example.com")
+                                                  .comSenha("12345678")
+                                                  .criar();
+        em.persist(novoUsuario);
         Usuario usuarioEncontrado = usuarioDao.buscarPorUsername(novoUsuario.getNome());
         assertNotNull(usuarioEncontrado);
     }
 
     @Test
     void naoDeveEncontrarUsuarioNaoCadastradoPeloNome() {
-        criarUsuario();
+        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
+                                                  .comEmail("fulano@example.com")
+                                                  .comSenha("12345678")
+                                                  .criar();
+        em.persist(novoUsuario);
         assertThrows(NoResultException.class, () -> usuarioDao.buscarPorUsername("beltrano"));
 
     }
 
     @Test
     void deveRemoverUmUsuario() {
-        Usuario novoUsuario = criarUsuario();
+        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
+                                                  .comEmail("fulano@example.com")
+                                                  .comSenha("12345678")
+                                                  .criar();
+        em.persist(novoUsuario);
         usuarioDao.deletar(novoUsuario);
         assertThrows(
             NoResultException.class, () -> usuarioDao.buscarPorUsername(novoUsuario.getNome())
         );
-    }
-
-    private Usuario criarUsuario() {
-        Usuario novoUsuario = new Usuario("fulano", "fulano@example.com", "12345678");
-        em.persist(novoUsuario);
-
-        return novoUsuario;
     }
 
 }
