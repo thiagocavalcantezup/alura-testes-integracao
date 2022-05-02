@@ -32,10 +32,10 @@ public class UsuarioDaoTest {
     }
 
     @Test
-    void deveEncontrarUsuarioCadastradoPeloNome() {
-        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
-                                                  .comEmail("fulano@example.com")
-                                                  .comSenha("12345678")
+    void deveriaEncontrarUsuarioCadastradoPeloNome() {
+        Usuario novoUsuario = new UsuarioBuilder().nome("fulano")
+                                                  .email("fulano@example.com")
+                                                  .senha("12345678")
                                                   .criar();
         em.persist(novoUsuario);
         Usuario usuarioEncontrado = usuarioDao.buscarPorUsername(novoUsuario.getNome());
@@ -43,10 +43,10 @@ public class UsuarioDaoTest {
     }
 
     @Test
-    void naoDeveEncontrarUsuarioNaoCadastradoPeloNome() {
-        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
-                                                  .comEmail("fulano@example.com")
-                                                  .comSenha("12345678")
+    void naoDeveriaEncontrarUsuarioNaoCadastradoPeloNome() {
+        Usuario novoUsuario = new UsuarioBuilder().nome("fulano")
+                                                  .email("fulano@example.com")
+                                                  .senha("12345678")
                                                   .criar();
         em.persist(novoUsuario);
         assertThrows(NoResultException.class, () -> usuarioDao.buscarPorUsername("beltrano"));
@@ -54,10 +54,10 @@ public class UsuarioDaoTest {
     }
 
     @Test
-    void deveRemoverUmUsuario() {
-        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
-                                                  .comEmail("fulano@example.com")
-                                                  .comSenha("12345678")
+    void deveriaRemoverUmUsuario() {
+        Usuario novoUsuario = new UsuarioBuilder().nome("fulano")
+                                                  .email("fulano@example.com")
+                                                  .senha("12345678")
                                                   .criar();
         em.persist(novoUsuario);
         usuarioDao.deletar(novoUsuario);

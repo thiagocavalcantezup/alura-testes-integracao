@@ -36,17 +36,17 @@ public class LeilaoDaoTest {
     }
 
     @Test
-    void deveCadastrarUmLeilao() {
-        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
-                                                  .comEmail("fulano@example.com")
-                                                  .comSenha("12345678")
+    void deveriaCadastrarUmLeilao() {
+        Usuario novoUsuario = new UsuarioBuilder().nome("fulano")
+                                                  .email("fulano@example.com")
+                                                  .senha("12345678")
                                                   .criar();
         em.persist(novoUsuario);
 
-        Leilao novoLeilao = new LeilaoBuilder().comNome("Mochila")
-                                               .comValorInicial("70.00")
-                                               .comDataAbertura(LocalDate.now())
-                                               .comUsuario(novoUsuario)
+        Leilao novoLeilao = new LeilaoBuilder().nome("Mochila")
+                                               .valorInicial("70.00")
+                                               .dataAbertura(LocalDate.now())
+                                               .usuario(novoUsuario)
                                                .criar();
 
         Leilao leilaoSalvo = leilaoDao.salvar(novoLeilao);
@@ -56,17 +56,17 @@ public class LeilaoDaoTest {
     }
 
     @Test
-    void deveAtualizarUmLeilao() {
-        Usuario novoUsuario = new UsuarioBuilder().comNome("fulano")
-                                                  .comEmail("fulano@example.com")
-                                                  .comSenha("12345678")
+    void deveriaAtualizarUmLeilao() {
+        Usuario novoUsuario = new UsuarioBuilder().nome("fulano")
+                                                  .email("fulano@example.com")
+                                                  .senha("12345678")
                                                   .criar();
         em.persist(novoUsuario);
 
-        Leilao novoLeilao = new LeilaoBuilder().comNome("Mochila")
-                                               .comValorInicial("70.00")
-                                               .comDataAbertura(LocalDate.now())
-                                               .comUsuario(novoUsuario)
+        Leilao novoLeilao = new LeilaoBuilder().nome("Mochila")
+                                               .valorInicial("70.00")
+                                               .dataAbertura(LocalDate.now())
+                                               .usuario(novoUsuario)
                                                .criar();
 
         Leilao leilaoSalvo = leilaoDao.salvar(novoLeilao);

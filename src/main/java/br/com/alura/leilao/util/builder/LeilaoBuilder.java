@@ -13,22 +13,22 @@ public class LeilaoBuilder {
     private LocalDate dataAbertura;
     private Usuario usuario;
 
-    public LeilaoBuilder comNome(String nome) {
+    public LeilaoBuilder nome(String nome) {
         this.nome = nome;
         return this;
     }
 
-    public LeilaoBuilder comValorInicial(String valorInicialStr) {
+    public LeilaoBuilder valorInicial(String valorInicialStr) {
         this.valorInicial = new BigDecimal(valorInicialStr);
         return this;
     }
 
-    public LeilaoBuilder comDataAbertura(LocalDate dataAbertura) {
+    public LeilaoBuilder dataAbertura(LocalDate dataAbertura) {
         this.dataAbertura = dataAbertura;
         return this;
     }
 
-    public LeilaoBuilder comUsuario(Usuario usuario) {
+    public LeilaoBuilder usuario(Usuario usuario) {
         this.usuario = usuario;
         return this;
     }
