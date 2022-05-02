@@ -1,5 +1,6 @@
 package br.com.alura.leilao.dao;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
@@ -42,6 +43,23 @@ public class LeilaoDaoTest {
         Leilao leilaoEncontrado = leilaoDao.buscarPorId(leilaoSalvo.getId());
 
         assertNotNull(leilaoEncontrado);
+    }
+
+    @Test
+    void deveAtualizarUmLeilao() {
+        Usuario novoUsuario = criarUsuario();
+        Leilao novoLeilao = new Leilao(
+            "Mochila", new BigDecimal("70.00"), LocalDate.now(), novoUsuario
+        );
+        Leilao leilaoSalvo = leilaoDao.salvar(novoLeilao);
+        leilaoSalvo.setNome("Celular");
+        leilaoSalvo.setValorInicial(new BigDecimal("400.00"));
+        leilaoSalvo = leilaoDao.salvar(leilaoSalvo);
+
+        Leilao leilaoEncontrado = leilaoDao.buscarPorId(leilaoSalvo.getId());
+
+        assertEquals("Celular", leilaoEncontrado.getNome());
+        assertEquals(new BigDecimal("400.00"), leilaoEncontrado.getValorInicial());
     }
 
     private Usuario criarUsuario() {
